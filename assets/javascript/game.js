@@ -2,6 +2,7 @@
 
 //array of possibel words
 var word = ["red", "blue", "black", "yellow"];
+var randomWord
 var reveal;
 var guess;
 var alphabet = "abcdefghijjklmnopqrstuvwxyz".split("");
@@ -11,33 +12,37 @@ var wins = 0;
 var revealArray = [];
 
 //choose a random word
-var word = word[Math.floor(Math.random() * word.length)];
-console.log(word);
+function randomWord() {
+randomWord = word[Math.floor(Math.random() * word.length)];
+}
+
 
 //blank spaces-letter reveal
-function randomWord () {
-for (var i=0; i < word.length; i++) {
+function startGame () {
+for (var i=0; i <randomWord.length; i++) {
       revealArray[i] = "_";
 }
 document.getElementById("reveal-div").innerHTML = revealArray.join (" ");
 }
-console.log(revealArray);
 
 // shows how many letters are left in the word
-var remainingLetters = word.length + 5;
+var remainingLetters = randomWord.length + 6;
 document.getElementById("guesses-remaining-div").innerHTML = remainingLetters;
-console.log(remainingLetters);
 
 function guesses() {
       document.onkeyup = function(event) {
             guess = event.key.toLowerCase();
-            for (i = 0; i < word.length; i++) {
-                  if (guess === word[i]) {
-                        correctLetters[i] = guess;
-                        document.getElementById("reveal-div").innerHTML = correctLetters.join(" ");
-                        revealArray[i]="_";
-                        // return document.getElementById ("endgame-div").innerHTML = "You Win!";
+            for (i = 0; i < randomWord.length; i++) {
+                  
+                  if (guess === randomWord[i]) {
+                        revealArray[i] = guess;
+                        document.getElementById("reveal-div").innerHTML = revealArray.join(" ");
                   }
+                  else {
+                        document.getElementById("guesses-remaining-div").innerHTML = remainingLetters;
+                        document.getElementById("letters-guessed-div").innerHTML = guess;
+                  }
+
             }
       }
 }
@@ -46,5 +51,6 @@ function guesses() {
 
 document.onkeyup = function(event){
 randomWord();
+startGame();
 guesses();
 }
