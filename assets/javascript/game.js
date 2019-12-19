@@ -18,9 +18,6 @@ var randomWord = word[Math.floor(Math.random() * word.length)];
 //choose a random word
 function randomWordGen() {
       randomWord = word[Math.floor(Math.random() * word.length)];
-      if (randomWord === "minerals") {
-            document.getElementById("hint-div").innerHTML = "natural, non-living solid crystals that make up rocks."
-      }
 }
 
 
