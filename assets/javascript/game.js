@@ -5,8 +5,8 @@ var word = ["red", "blue", "black", "yellow"];
 var randomWord
 var reveal;
 var guess;
-var alphabet = "abcdefghijjklmnopqrstuvwxyz".split("");
-var correctLetters = [];
+// var alphabet = "abcdefghijjklmnopqrstuvwxyz".split("");
+// var correctLetters = [];
 var lettersGuessed = [];
 var wins = 0;
 var revealArray = [];

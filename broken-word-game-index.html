@@ -1,0 +1,63 @@
+// document.addEventListener ('keydown') {
+
+//array of possibel words
+var word = ["red", "blue", "black", "yellow"];
+var randomWord;
+var reveal;
+var guess;
+var alphabet = "abcdefghijjklmnopqrstuvwxyz".split("");
+var correctLetters = [];
+var lettersGuessed = [];
+var remainingLetters;
+var wins = 0;
+document.getElementById("wins-div").innerHTML = wins;
+var revealArray = [];
+remainingLetters = revealArray.length + 6;
+
+//choose a random word
+function randomWordGen() {
+      randomWord = word[Math.floor(Math.random() * word.length)];
+      for (var i = 0; i < randomWord.length; i++) {
+            revealArray[i] = "_";
+      }
+      console.log(randomWord);
+      console.log(revealArray);
+}
+
+document.onkeyup = function (event) {
+            randomWordGen();
+            document.getElementById("guesses-remaining-div").innerHTML = remainingLetters;
+            document.getElementById("reveal-div").innerHTML = revealArray.join(" ");
+            console.log(remainingLetters);
+            remainingLetters = revealArray.length + 6;
+      
+
+      while (remainingLetters > 0) {
+                  document.onkeyup = function (event) {
+                        guess = event.key.toLowerCase();
+                        for (var i = 0; i < randomWord.length; i++) {
+
+                              if (guess === randomWord[i]) {
+                                    revealArray[i] = guess;
+                                    document.getElementById("reveal-div").innerHTML = revealArray.join(" ");
+                                    document.getElementById("guesses-remaining-div").innerHTML = remainingLetters - 1;
+                              }
+                              else if (guess !== randomWord[i]) {
+                                    revealArray[i] = "_";
+                                    document.getElementById("guesses-remaining-div").innerHTML = remainingLetters - 1;
+                                    document.getElementById("letters-guessed-div").innerHTML = " " + guess;
+                              }
+
+                        }
+                  }
+            }
+
+      if (revealArray === randomWord) {
+            wins++;
+            document.getElementById("end-game-div").innerHTML = "You Win!";
+      }
+
+      else if (remainingLetters === 0) {
+            document.getElementById("end-game-div").innerHTML = "You lose!";
+      }
+}
