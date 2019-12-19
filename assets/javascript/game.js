@@ -18,6 +18,9 @@ var randomWord = word[Math.floor(Math.random() * word.length)];
 //choose a random word
 function randomWordGen() {
       randomWord = word[Math.floor(Math.random() * word.length)];
+      if (randomWord === "minerals") {
+            document.getElementById("hint-div").innerHTML = "natural, non-living solid crystals that make up rocks."
+      }
 }
 
 
@@ -27,12 +30,12 @@ function startGame() {
       wordLength = randomWord.length;
       lettersGuessed = [];
       revealArray = [];
-      remainingLetters = 0;
+      remainingLetters = 10;
       for (var i = 0; i < randomWord.length; i++) {
             revealArray[i] = "_";
       }
       document.getElementById("reveal-div").innerHTML = revealArray.join(" ");
-      remainingLetters = randomWord.length + 6;
+      // remainingLetters = randomWord.length ;
       document.getElementById("guesses-remaining-div").innerHTML = remainingLetters;
       document.getElementById("wins-div").innerHTML = wins;
       document.getElementById("losses-div").innerHTML = losses;
