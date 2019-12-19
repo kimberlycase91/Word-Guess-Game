@@ -60,9 +60,12 @@ function guesses() {
             }
 
              if (wordLength === 0) {
-                  console.log("You win!")
                   wins++;
+                  document.getElementById("wins-div").innerHTML = wins;
+                  document.getElementById("reveal-div").textContent = randomWord;
+                  document.onkeyup = function (event) {
                   gamePlay();
+                  }
             }
             
             if (guess !== randomWord[i]) {
