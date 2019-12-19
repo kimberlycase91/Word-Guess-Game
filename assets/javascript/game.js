@@ -1,7 +1,7 @@
 // document.addEventListener ('keydown') {
 
 //array of possibel words
-var word = ["red", "blue", "black", "yellow"];
+var word = ["minerals", "luster", "hardness", "streak", "cleavage", "igneous", "sedimentary", "metamorphic", "sedimentary", "landform", "weathering", "erosion", "fault", "pangaea", "groundwater", "precipitation", "evaporation", "condensation", "core", "mantle", "crust", "lava", "magma", "volcano", "sedimentation", "deposition", "earthquake", "fossil", "glacier","tsunami"];
 var randomWord;
 var reveal;
 var guess;
@@ -71,6 +71,18 @@ function guesses() {
                   }
             }
 
+            if (remainingLetters === 0) {
+                  losses++;
+                  console.log();
+                  document.getElementById("wins-div").innerHTML = losses;
+                  document.getElementById("reveal-div").textContent = randomWord;
+                  remainingLetters = [];
+                  lettersGuessed = [];
+                  document.onkeyup = function (event) {
+                        gamePlay();
+                  }
+            }
+            
             if (guess !== randomWord[i]) {
                   for (i = 0; i < alphabet.length; i++) {
                         if (guess === alphabet[i]) {
@@ -87,18 +99,7 @@ function guesses() {
                   }
             }}
 
-
-
-            if (remainingLetters === 0) {
-                  losses++;
-                  document.getElementById("wins-div").innerHTML = losses;
-                  document.getElementById("reveal-div").textContent = randomWord;
-                  remainingLetters = [];
-                  lettersGuessed = [];
-                  document.onkeyup = function (event) {
-                        gamePlay();
-                  }
-            }
+            
       }
 }
 
