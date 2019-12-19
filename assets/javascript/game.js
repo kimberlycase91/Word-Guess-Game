@@ -5,6 +5,7 @@ var word = ["red", "blue", "black", "yellow"];
 var randomWord;
 var reveal;
 var guess;
+var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 var remainingLetters = 0;
 var lettersGuessed = [];
 var incorrectGuess = [];
@@ -63,22 +64,40 @@ function guesses() {
                   wins++;
                   document.getElementById("wins-div").innerHTML = wins;
                   document.getElementById("reveal-div").textContent = randomWord;
+                  remainingLetters = [];
+                  lettersGuessed = [];
                   document.onkeyup = function (event) {
                         gamePlay();
                   }
             }
 
             if (guess !== randomWord[i]) {
-                  incorrectGuess = guess;
-                  lettersGuessed.push(incorrectGuess);
-                  document.getElementById("letters-guessed-div").innerHTML = lettersGuessed.join(" ");
-                  guessCounter();
-            }
+                  for (i = 0; i < alphabet.length; i++) {
+                        if (guess === alphabet[i]) {
+                              incorrectGuess = guess;
+                              lettersGuessed.push(incorrectGuess);
+                              document.getElementById("letters-guessed-div").innerHTML = lettersGuessed.join(" ");
+                              guessCounter();
+                        }
+
+                  }
+                  for (i = 0; i < alphabet.length; i++) {
+                  if (guess !== alphabet[i]) {
+                        return null;
+                  }
+            }}
+
+
 
             if (remainingLetters === 0) {
-                  console.log("You lose")
                   losses++;
-                  gamePlay();
+                  document.getElementById("wins-div").innerHTML = losses;
+                  document.getElementById("reveal-div").textContent = randomWord;
+                  remainingLetters = [];
+                  lettersGuessed = [];
+                  document.onkeyup = function (event) {
+                        gamePlay();
+                  }
             }
       }
 }
