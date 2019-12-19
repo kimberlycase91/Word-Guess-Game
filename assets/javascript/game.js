@@ -8,6 +8,7 @@ var guess;
 var remainingLetters = 0;
 var lettersGuessed = [];
 var wins = 0;
+var losses = 0;
 var revealArray = [];
 var wordLength;
 var randomWord = word[Math.floor(Math.random() * word.length)];
@@ -32,6 +33,7 @@ function startGame() {
       remainingLetters = randomWord.length + 6;
       document.getElementById("guesses-remaining-div").innerHTML = remainingLetters;
       document.getElementById("wins-div").innerHTML = wins;
+      document.getElementById("losses-div").innerHTML = losses;
 
 }
 
@@ -71,6 +73,7 @@ function guesses() {
 
             if (remainingLetters === 0) {
             console.log("You lose")
+            losses++;
             gamePlay();
       }
 }
