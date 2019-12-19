@@ -1,8 +1,19 @@
-body {
-    background-color: pink;
-    background-image: url(/assets/images/laura-colquitt-cX5q7nX1FeA-unsplash.jpg);
+body { 
+    background: url(../images/laura-colquitt-cX5q7nX1FeA-unsplash.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-size: 20px;
+  }
+
+#game-container {
+    background: tan;
+    color: black;
+    border: solid;
+    border-width: 5px;
+    border-color: black;
+    padding: 20px;
+    margin-top: 40px;
 }
 
-.main-container {
-    background: grey;
-}

@@ -7,6 +7,7 @@ var reveal;
 var guess;
 var remainingLetters = 0;
 var lettersGuessed = [];
+var incorrectGuess = [];
 var wins = 0;
 var losses = 0;
 var revealArray = [];
@@ -34,7 +35,6 @@ function startGame() {
       document.getElementById("guesses-remaining-div").innerHTML = remainingLetters;
       document.getElementById("wins-div").innerHTML = wins;
       document.getElementById("losses-div").innerHTML = losses;
-
 }
 
 // shows how many letters are left in the word
@@ -59,27 +59,28 @@ function guesses() {
                   }
             }
 
-             if (wordLength === 0) {
+            if (wordLength === 0) {
                   wins++;
                   document.getElementById("wins-div").innerHTML = wins;
                   document.getElementById("reveal-div").textContent = randomWord;
                   document.onkeyup = function (event) {
-                  gamePlay();
+                        gamePlay();
                   }
             }
-            
+
             if (guess !== randomWord[i]) {
-                  lettersGuessed.push(guess);
+                  incorrectGuess = guess;
+                  lettersGuessed.push(incorrectGuess);
                   document.getElementById("letters-guessed-div").innerHTML = lettersGuessed.join(" ");
                   guessCounter();
             }
 
             if (remainingLetters === 0) {
-            console.log("You lose")
-            losses++;
-            gamePlay();
+                  console.log("You lose")
+                  losses++;
+                  gamePlay();
+            }
       }
-}
 }
 
 
@@ -89,5 +90,6 @@ function gamePlay() {
 }
 
 document.onkeyup = function (event) {
-startGame();
-guesses();}
+      startGame();
+      guesses();
+}
